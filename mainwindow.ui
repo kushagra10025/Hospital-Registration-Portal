@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>HHC - Patient Registration</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QLabel" name="lbl_portal_name">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>## Main Desk Portal</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::MarkdownText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="lbl_logo">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>600</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>10000</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>800</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>HHC Logo</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QTabWidget" name="multi_tabs">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <property name="elideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <widget class="AddPatient" name="tab_register">
+       <attribute name="title">
+        <string>Add Patient</string>
+       </attribute>
+      </widget>
+      <widget class="SearchPatient" name="tab_search">
+       <attribute name="title">
+        <string>Search Patient</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionConfigure_Connection"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionContact"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionAdd_Patient"/>
+    <addaction name="actionSearch_Patient"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionAdd_Patient"/>
+   <addaction name="actionSearch_Patient"/>
+   <addaction name="separator"/>
+   <addaction name="actionConfigure_Connection"/>
+   <addaction name="actionAbout"/>
+   <addaction name="actionContact"/>
+   <addaction name="separator"/>
+   <addaction name="actionQuit"/>
+  </widget>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/about-48.png</normaloff>:/assets/assets/icons/about-48.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F1</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/close-48.png</normaloff>:/assets/assets/icons/close-48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionContact">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/contact-48.png</normaloff>:/assets/assets/icons/contact-48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Contact</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F2</string>
+   </property>
+  </action>
+  <action name="actionAdd_Patient">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/add-user-male-48.png</normaloff>:/assets/assets/icons/add-user-male-48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Patient</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionSearch_Patient">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/find-user-male-48.png</normaloff>:/assets/assets/icons/find-user-male-48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search Patient</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionConfigure_Connection">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/config-48.png</normaloff>:/assets/assets/icons/config-48.png</iconset>
+   </property>
+   <property name="text">
+    <string>Configure Connection</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AddPatient</class>
+   <extends>QWidget</extends>
+   <header>addpatient.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SearchPatient</class>
+   <extends>QWidget</extends>
+   <header>searchpatient.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="hhc_resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

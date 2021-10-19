@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/assets">
+        <file>assets/img/logo.png</file>
+        <file>assets/icons/add-user-female-48.png</file>
+        <file>assets/icons/contact-48.png</file>
+        <file>assets/icons/help-48.png</file>
+        <file>assets/icons/about-48.png</file>
+        <file>assets/icons/close-48.png</file>
+        <file>assets/icons/add-user-male-48.png</file>
+        <file>assets/icons/find-user-female-48.png</file>
+        <file>assets/icons/find-user-male-48.png</file>
+        <file>assets/icons/config-48.png</file>
+    </qresource>
+</RCC>
