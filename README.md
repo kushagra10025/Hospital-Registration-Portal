@@ -2,6 +2,12 @@
 
 Information for the project will be updated soon
 
+## Screenshots
+
+## How to Configure?
+
+## How to Use?
+
 ## TODO
 * Update Readme
 * Add localization
