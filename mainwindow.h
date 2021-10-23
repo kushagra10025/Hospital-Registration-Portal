@@ -35,7 +35,5 @@ private:
     Ui::MainWindow *ui;
 
     QPixmap* pix;
-
-//    DBConnection* conn;
 };
 #endif // MAINWINDOW_H

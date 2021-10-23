@@ -10,7 +10,8 @@ SearchPatient::SearchPatient(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    conn = new DBConnection();
+//    conn = new DBConnection();
+    conn = std::make_shared<DBConnection>();
 
     qDebug() << conn->get_conn_status() << "From Search Patients";
 
@@ -118,8 +119,8 @@ void SearchPatient::on_tbv_results_customContextMenuRequested(const QPoint &pos)
 
     /* Set the actions to the menu */
 
-    menu->addAction(viewVisitsDevice);
     menu->addAction(addVisitDevice);
+    menu->addAction(viewVisitsDevice);
     menu->addSeparator();
     menu->addAction(editDevice);
     menu->addAction(deleteDevice);
@@ -178,12 +179,11 @@ void SearchPatient::slotUpdateEditTableModel()
 
 void SearchPatient::slotViewVisits()
 {
-    qDebug() << "Viewing All Visits";
-    DialogViewVisits *viewVisitsDialog = new DialogViewVisits();
+    DialogViewVisits *viewVisitsDialog = new DialogViewVisits(&rowCurrentlyBeingEdited, conn);
 
 //    connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
 
-    viewVisitsDialog->setWindowTitle("View Patient Visits!");
+    viewVisitsDialog->setWindowTitle("View Patient Visits/Payment History!");
     viewVisitsDialog->exec();
 }
 
@@ -194,7 +194,7 @@ void SearchPatient::slotAddVisit()
 
 //    connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
 
-    addVisitDialog->setWindowTitle("Add Patient Visit!");
+    addVisitDialog->setWindowTitle("Add Patient Visit/Payment!");
     addVisitDialog->exec();
 }
 

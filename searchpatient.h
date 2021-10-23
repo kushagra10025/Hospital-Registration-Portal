@@ -52,7 +52,8 @@ private slots:
 private:
     Ui::SearchPatient *ui;
 
-    DBConnection *conn;
+    std::shared_ptr<DBConnection> conn;
+//    DBConnection *conn;
 
     QSqlTableModel* modelDevice;
     int rowCurrentlySelected;
