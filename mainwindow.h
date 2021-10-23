@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QMessageBox>
 
+#include "dialogdbconnectionconfigure.h"
 #include "dbconnection.h"
 
 QT_BEGIN_NAMESPACE
@@ -31,9 +32,12 @@ private slots:
 
     void on_actionSearch_Patient_triggered();
 
+    void on_actionConfigure_Connection_triggered();
+
 private:
     Ui::MainWindow *ui;
 
     QPixmap* pix;
+
 };
 #endif // MAINWINDOW_H

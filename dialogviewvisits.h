@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QMessageBox>
-#include <QSqlRecord>
 #include <QDebug>
 
 #include "dbconnection.h"
@@ -20,6 +19,9 @@ public:
     explicit DialogViewVisits(QSqlRecord *patientRow, std::shared_ptr<DBConnection> conn, QWidget *parent = nullptr);
     ~DialogViewVisits();
 
+private slots:
+    void slotUpdateTableModel();
+
 private:
     Ui::DialogViewVisits *ui;
 
@@ -27,6 +29,11 @@ private:
 
     QString p_reg_no;
     QSqlRecord *patientRow;
+
+    QSqlTableModel* modelVisit;
+
+    QString GetUniqueVisitId(QDate date);
+    void FillTableWithDetails();
 
 public:
     QString getRegNo();

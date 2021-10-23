@@ -10,5 +10,7 @@
         <file>assets/icons/find-user-female-48.png</file>
         <file>assets/icons/find-user-male-48.png</file>
         <file>assets/icons/config-48.png</file>
+        <file>assets/icons/add-visit-48.png</file>
+        <file>assets/icons/view-visit-48.png</file>
     </qresource>
 </RCC>

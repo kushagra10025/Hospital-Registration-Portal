@@ -50,3 +50,13 @@ void MainWindow::on_actionSearch_Patient_triggered()
 {
     ui->multi_tabs->setCurrentIndex(1);
 }
+
+void MainWindow::on_actionConfigure_Connection_triggered()
+{
+    std::unique_ptr<DialogDBConnectionConfigure> configureDBDialog = std::make_unique<DialogDBConnectionConfigure>();
+
+//    connect(configureDBDialog, SIGNAL(signalReady(), this, SLOT(someslotfunctionhere())));
+    configureDBDialog->setWindowTitle("Configure Database Connection!");
+    configureDBDialog->exec();
+}
+

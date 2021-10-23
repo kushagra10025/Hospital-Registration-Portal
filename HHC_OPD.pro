@@ -12,6 +12,7 @@ SOURCES += \
     addpatient.cpp \
     dbconnection.cpp \
     dialogaddvisit.cpp \
+    dialogdbconnectionconfigure.cpp \
     dialogeditpatient.cpp \
     dialogviewvisits.cpp \
     main.cpp \
@@ -19,9 +20,11 @@ SOURCES += \
     searchpatient.cpp
 
 HEADERS += \
+    PROG_ENUMS.h \
     addpatient.h \
     dbconnection.h \
     dialogaddvisit.h \
+    dialogdbconnectionconfigure.h \
     dialogeditpatient.h \
     dialogviewvisits.h \
     mainwindow.h \
@@ -30,6 +33,7 @@ HEADERS += \
 FORMS += \
     addpatient.ui \
     dialogaddvisit.ui \
+    dialogdbconnectionconfigure.ui \
     dialogeditpatient.ui \
     dialogviewvisits.ui \
     mainwindow.ui \

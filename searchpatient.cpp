@@ -24,7 +24,6 @@ SearchPatient::SearchPatient(QWidget *parent) :
 
 SearchPatient::~SearchPatient()
 {
-    conn->conn_close();
     delete ui;
 }
 
@@ -190,7 +189,7 @@ void SearchPatient::slotViewVisits()
 void SearchPatient::slotAddVisit()
 {
     qDebug() << "Adding A Visit!";
-    DialogAddVisit *addVisitDialog = new DialogAddVisit();
+    DialogAddVisit *addVisitDialog = new DialogAddVisit(&rowCurrentlyBeingEdited);
 
 //    connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
 
@@ -198,11 +197,14 @@ void SearchPatient::slotAddVisit()
     addVisitDialog->exec();
 }
 
-
 void SearchPatient::on_tbv_results_clicked(const QModelIndex &index)
 {
     rowCurrentlySelected = index.row();
     rowCurrentlyBeingEdited = modelDevice->record(rowCurrentlySelected);
+
+//    auto* pw = (MainWindow*)parentWidget();
+//    pw->set_enable_action_visits(true);
+
     qDebug() << rowCurrentlySelected;
 }
 

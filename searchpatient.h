@@ -9,6 +9,7 @@
 #include "dialogeditpatient.h"
 #include "dialogviewvisits.h"
 #include "dialogaddvisit.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class SearchPatient;
