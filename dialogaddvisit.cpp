@@ -8,6 +8,7 @@ DialogAddVisit::DialogAddVisit(QSqlRecord* patientRow,std::shared_ptr<DBConnecti
     ui->setupUi(this);
 
     this->conn = conn;
+    printv = std::make_shared<PrintVisit>();
 
 //    SET FIXED SIZE (NON RESIZEABLE)
 //    this->setFixedSize(this->width(),this->height());
@@ -159,6 +160,7 @@ void DialogAddVisit::on_btn_add_visit_clicked()
     QMessageBox::StandardButton printQues = QMessageBox::question(this,"Print Visit!","Do You want to Print the Visit Details?", QMessageBox::Yes | QMessageBox::No);
     if(printQues == QMessageBox::Yes){
         qDebug() << "Yes Clicked!";
+        printv->VisitReceiptPDF(visitReceiptDetails);
     }
     // Auto Clear form After Added the visit!
 }

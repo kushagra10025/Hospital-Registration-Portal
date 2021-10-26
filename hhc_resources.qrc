@@ -12,5 +12,6 @@
         <file>assets/icons/config-48.png</file>
         <file>assets/icons/add-visit-48.png</file>
         <file>assets/icons/view-visit-48.png</file>
+        <file>assets/template/visit_receipt_template.png</file>
     </qresource>
 </RCC>

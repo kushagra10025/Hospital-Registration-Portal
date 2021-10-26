@@ -8,6 +8,7 @@
 
 #include "dbconnection.h"
 #include "PROG_ENUMS.h"
+#include "printvisit.h"
 
 namespace Ui {
 class DialogAddVisit;
@@ -31,6 +32,7 @@ private:
     Ui::DialogAddVisit *ui;
 
     std::shared_ptr<DBConnection> conn;
+    std::shared_ptr<PrintVisit> printv;
 
     QString p_reg_no;
     QSqlRecord *patientRow;
@@ -39,6 +41,8 @@ private:
 
     void setup_dialog_box();
     void add_enums_to_combo_boxes();
+
+    OPDVisitReceiptDetails visitReceiptDetails;
 };
 
 #endif // DIALOGADDVISIT_H

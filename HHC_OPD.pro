@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,6 +17,7 @@ SOURCES += \
     dialogviewvisits.cpp \
     main.cpp \
     mainwindow.cpp \
+    printvisit.cpp \
     searchpatient.cpp
 
 HEADERS += \
@@ -28,6 +29,7 @@ HEADERS += \
     dialogeditpatient.h \
     dialogviewvisits.h \
     mainwindow.h \
+    printvisit.h \
     searchpatient.h
 
 FORMS += \
