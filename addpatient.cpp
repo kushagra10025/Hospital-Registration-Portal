@@ -47,7 +47,6 @@ QString AddPatient::GetUniqueRegistration(QDate date)
 void AddPatient::on_btn_register_clicked()
 {
     QChar gender = 'O';
-
     QDate regDate = ui->date_regdate->date();
     qDebug() << regDate.toString();
     QString fullname = ui->txt_fullname->toPlainText();

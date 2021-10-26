@@ -9,6 +9,7 @@
 #include "dialogeditpatient.h"
 #include "dialogviewvisits.h"
 #include "dialogaddvisit.h"
+#include "printvisit.h"
 
 namespace Ui {
 class SearchPatient;
@@ -47,17 +48,22 @@ private slots:
 
     void slotAddVisit();
 
+    void slotPrintVisit(OPDVisitReceiptDetails receitVisit);
+
     void on_tbv_results_clicked(const QModelIndex &index);
 
 private:
     Ui::SearchPatient *ui;
 
     std::shared_ptr<DBConnection> conn;
+    std::shared_ptr<PrintVisit> printv;
 //    DBConnection *conn;
 
     QSqlTableModel* modelDevice;
     int rowCurrentlySelected;
     QSqlRecord rowCurrentlyBeingEdited;
+
+    OPDVisitReceiptDetails receitVisit;
 
 };
 

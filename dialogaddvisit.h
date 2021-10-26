@@ -22,6 +22,9 @@ public:
     explicit DialogAddVisit(QSqlRecord* patientRow,std::shared_ptr<DBConnection> conn, QWidget *parent = nullptr);
     ~DialogAddVisit();
 
+signals:
+    void printVisitReady(OPDVisitReceiptDetails visitDetails);
+
 private slots:
 
     void on_btn_clear_clicked();
@@ -32,7 +35,7 @@ private:
     Ui::DialogAddVisit *ui;
 
     std::shared_ptr<DBConnection> conn;
-    std::shared_ptr<PrintVisit> printv;
+
 
     QString p_reg_no;
     QSqlRecord *patientRow;

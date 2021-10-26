@@ -8,7 +8,7 @@ DialogAddVisit::DialogAddVisit(QSqlRecord* patientRow,std::shared_ptr<DBConnecti
     ui->setupUi(this);
 
     this->conn = conn;
-    printv = std::make_shared<PrintVisit>();
+
 
 //    SET FIXED SIZE (NON RESIZEABLE)
 //    this->setFixedSize(this->width(),this->height());
@@ -59,7 +59,7 @@ void DialogAddVisit::setup_dialog_box()
     ui->date_payment_date->setDate(QDate::currentDate());
     ui->date_visit_date->setDate(QDate::currentDate());
 
-    ui->txt_con_fees->setText("500.00");
+    ui->txt_con_fees->setText("500");
 
     ui->txt_remarks->setText("None");
 
@@ -117,6 +117,7 @@ void DialogAddVisit::on_btn_clear_clicked()
 
 void DialogAddVisit::on_btn_add_visit_clicked()
 {
+    // TODO Auto Change Payment date to Visit Date on Selecting Visit Date
     QDate visitDate = ui->date_visit_date->date();
     QString uniqueVisitID = GetUniqueVisitId(visitDate);
     QString visitDateStr = visitDate.toString();
@@ -152,15 +153,32 @@ void DialogAddVisit::on_btn_add_visit_clicked()
         QMessageBox::information(this,"Success!","Inserted Successfully!");
     }else{
         QMessageBox::information(this,"Error!","Failed to insert!");
+        return;
     }
-
-    qDebug() << "Successfully Inserted Visit!";
 
     // TODO Go To Print Receipt
     QMessageBox::StandardButton printQues = QMessageBox::question(this,"Print Visit!","Do You want to Print the Visit Details?", QMessageBox::Yes | QMessageBox::No);
     if(printQues == QMessageBox::Yes){
         qDebug() << "Yes Clicked!";
-        printv->VisitReceiptPDF(visitReceiptDetails);
+        // emit Signal with all details
+
+        visitReceiptDetails.visitId = uniqueVisitID;
+        visitReceiptDetails.patientRegNo = p_reg_no;
+        visitReceiptDetails.patientVisitDate = visitDateStr;
+        visitReceiptDetails.doctorName = doctorName;
+        visitReceiptDetails.particulars = "Consultation Fees";
+        visitReceiptDetails.cosulFees = consulFees;
+        visitReceiptDetails.patientAddress = patientRow->value("p_address").toString();
+        visitReceiptDetails.patientPhone = patientRow->value("p_pno").toString();
+        visitReceiptDetails.patientName = patientRow->value("p_fullname").toString();
+        visitReceiptDetails.patientAge = patientRow->value("p_age").toString();
+        visitReceiptDetails.patientGender = patientRow->value("p_gender").toString();
+        visitReceiptDetails.additionalRemarks = remarksText;
+        visitReceiptDetails.paymentMode = paymentMode;
+        visitReceiptDetails.paymentStatus = paymentStatus;
+        visitReceiptDetails.consulMode = consulMode;
+
+        emit printVisitReady(visitReceiptDetails);
     }
     // Auto Clear form After Added the visit!
 }

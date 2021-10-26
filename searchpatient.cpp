@@ -12,6 +12,7 @@ SearchPatient::SearchPatient(QWidget *parent) :
 
 //    conn = new DBConnection();
     conn = std::make_shared<DBConnection>();
+    printv = std::make_shared<PrintVisit>();
 
     qDebug() << conn->get_conn_status() << "From Search Patients";
 
@@ -191,12 +192,19 @@ void SearchPatient::slotAddVisit()
     qDebug() << "Adding A Visit!";
     DialogAddVisit *addVisitDialog = new DialogAddVisit(&rowCurrentlyBeingEdited, conn);
 
-    // connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
+//    connect(addVisitDialog, SIGNAL(printVisitReady(receitVisit)), this, SLOT(slotPrintVisit(receitVisit)));
+    connect(addVisitDialog, &DialogAddVisit::printVisitReady,this, &SearchPatient::slotPrintVisit);
     // TODO Receive the print_confirmation and Record
     // from AddVisit and View Vist and then print the receipt.
 
     addVisitDialog->setWindowTitle("Add Patient Visit/Payment!");
     addVisitDialog->exec();
+}
+
+void SearchPatient::slotPrintVisit(OPDVisitReceiptDetails receitVisit)
+{
+    qDebug() << "Called from Add Visit";
+    printv->VisitReceiptPDF(receitVisit);
 }
 
 void SearchPatient::on_tbv_results_clicked(const QModelIndex &index)
