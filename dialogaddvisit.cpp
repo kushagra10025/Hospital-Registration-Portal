@@ -1,13 +1,15 @@
 #include "dialogaddvisit.h"
 #include "ui_dialogaddvisit.h"
 
-DialogAddVisit::DialogAddVisit(QSqlRecord* patientRow, QWidget *parent) :
+DialogAddVisit::DialogAddVisit(QSqlRecord* patientRow,std::shared_ptr<DBConnection> conn, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogAddVisit)
 {
     ui->setupUi(this);
 
-//    // SET FIXED SIZE (NON RESIZEABLE)
+    this->conn = conn;
+
+//    SET FIXED SIZE (NON RESIZEABLE)
 //    this->setFixedSize(this->width(),this->height());
 
     this->patientRow = patientRow;
@@ -114,7 +116,50 @@ void DialogAddVisit::on_btn_clear_clicked()
 
 void DialogAddVisit::on_btn_add_visit_clicked()
 {
-    QString uniqueVisitID = GetUniqueVisitId(ui->date_visit_date->date());
-    qDebug() << "Unique Visit ID : " << uniqueVisitID << " for " << p_reg_no;
+    QDate visitDate = ui->date_visit_date->date();
+    QString uniqueVisitID = GetUniqueVisitId(visitDate);
+    QString visitDateStr = visitDate.toString();
+    QString remarksText = ui->txt_remarks->toPlainText();
+
+    QString consulFees = ui->txt_con_fees->toPlainText();
+    QString consulMode = ui->combo_consultation_mode->currentText();
+
+    QString paymentDateStr = ui->date_payment_date->date().toString();
+    QString paymentMode = ui->combo_payment_method->currentText();
+    QString paymentStatus = ui->combo_payment_status->currentText();
+
+    // Get Doctor Id from DoctorName
+    // TODO Replace Doctor Name with Doctor Id
+    QString doctorName = ui->combo_doctor_name->currentText();
+
+    if(uniqueVisitID.isEmpty() || consulFees.isEmpty() || consulMode.isEmpty() || paymentMode.isEmpty() || paymentStatus.isEmpty() || doctorName.isEmpty()){
+        QMessageBox::information(this,"Empty Field!","Please enter some value!!");
+        return;
+    }
+
+    if(!conn->get_conn_status()){
+        return;
+    }
+
+    // TODO Perform some checks
+
+    QString queryBase = "insert into visit_details values('"+uniqueVisitID+"','"+p_reg_no+"','"+visitDateStr+"','"+doctorName+"','"+consulFees+"','"+consulMode+"','"+paymentMode+"','"+paymentStatus+"','"+paymentDateStr+"','"+remarksText+"')";
+    QSqlQuery* qry = new QSqlQuery(conn->get_myDB());
+    qry->prepare(queryBase);
+    // DO ERROR CHECKING FOR SQL RULES BEFORE EMITTING SIGNAL
+    if(qry->exec()){
+        QMessageBox::information(this,"Success!","Inserted Successfully!");
+    }else{
+        QMessageBox::information(this,"Error!","Failed to insert!");
+    }
+
+    qDebug() << "Successfully Inserted Visit!";
+
+    // TODO Go To Print Receipt
+    QMessageBox::StandardButton printQues = QMessageBox::question(this,"Print Visit!","Do You want to Print the Visit Details?", QMessageBox::Yes | QMessageBox::No);
+    if(printQues == QMessageBox::Yes){
+        qDebug() << "Yes Clicked!";
+    }
+    // Auto Clear form After Added the visit!
 }
 

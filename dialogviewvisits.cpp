@@ -35,6 +35,12 @@ void DialogViewVisits::slotUpdateTableModel()
     ui->tbv_view_visits->verticalHeader()->setStretchLastSection(true);
 }
 
+void DialogViewVisits::slotPrintVisitDetails()
+{
+    qDebug() << "Printing Current Visit!";
+    qDebug() << rowCurrentlyBeingEdited.field(1).value();
+}
+
 void DialogViewVisits::FillTableWithDetails()
 {
     if(!conn->get_conn_status()){
@@ -53,3 +59,31 @@ void DialogViewVisits::FillTableWithDetails()
 
     slotUpdateTableModel();
 }
+
+void DialogViewVisits::on_tbv_view_visits_customContextMenuRequested(const QPoint &pos)
+{
+    QMenu* menu = new QMenu(this);
+
+    /* Create actions to the context menu */
+    QAction * printVisit = new QAction("Print Visit Details!",this);
+
+    /* Connect slot handler for Action pop-up menu */
+    // TODO Add Print Slot
+    connect(printVisit, SIGNAL(triggered()),this, SLOT(slotPrintVisitDetails()));
+
+    /* Set the actions to the menu */
+    menu->addAction(printVisit);
+
+    /* Call the context menu */
+    menu->popup(ui->tbv_view_visits->viewport()->mapToGlobal(pos));
+}
+
+
+void DialogViewVisits::on_tbv_view_visits_clicked(const QModelIndex &index)
+{
+    rowCurrentlySelected = index.row();
+    rowCurrentlyBeingEdited = modelVisit->record(rowCurrentlySelected);
+
+    qDebug() << rowCurrentlySelected;
+}
+

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QUuid>
 #include <QDate>
+#include <QMessageBox>
 
 #include "dbconnection.h"
 #include "PROG_ENUMS.h"
@@ -17,7 +18,7 @@ class DialogAddVisit : public QDialog
     Q_OBJECT
 
 public:
-    explicit DialogAddVisit(QSqlRecord* patientRow, QWidget *parent = nullptr);
+    explicit DialogAddVisit(QSqlRecord* patientRow,std::shared_ptr<DBConnection> conn, QWidget *parent = nullptr);
     ~DialogAddVisit();
 
 private slots:
@@ -28,6 +29,8 @@ private slots:
 
 private:
     Ui::DialogAddVisit *ui;
+
+    std::shared_ptr<DBConnection> conn;
 
     QString p_reg_no;
     QSqlRecord *patientRow;

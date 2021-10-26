@@ -189,9 +189,11 @@ void SearchPatient::slotViewVisits()
 void SearchPatient::slotAddVisit()
 {
     qDebug() << "Adding A Visit!";
-    DialogAddVisit *addVisitDialog = new DialogAddVisit(&rowCurrentlyBeingEdited);
+    DialogAddVisit *addVisitDialog = new DialogAddVisit(&rowCurrentlyBeingEdited, conn);
 
-//    connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
+    // connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
+    // TODO Receive the print_confirmation and Record
+    // from AddVisit and View Vist and then print the receipt.
 
     addVisitDialog->setWindowTitle("Add Patient Visit/Payment!");
     addVisitDialog->exec();
@@ -201,9 +203,6 @@ void SearchPatient::on_tbv_results_clicked(const QModelIndex &index)
 {
     rowCurrentlySelected = index.row();
     rowCurrentlyBeingEdited = modelDevice->record(rowCurrentlySelected);
-
-//    auto* pw = (MainWindow*)parentWidget();
-//    pw->set_enable_action_visits(true);
 
     qDebug() << rowCurrentlySelected;
 }

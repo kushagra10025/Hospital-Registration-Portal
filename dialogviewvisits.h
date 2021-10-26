@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QDebug>
+#include <QMenu>
 
 #include "dbconnection.h"
 
@@ -22,6 +23,12 @@ public:
 private slots:
     void slotUpdateTableModel();
 
+    void slotPrintVisitDetails();
+
+    void on_tbv_view_visits_customContextMenuRequested(const QPoint &pos);
+
+    void on_tbv_view_visits_clicked(const QModelIndex &index);
+
 private:
     Ui::DialogViewVisits *ui;
 
@@ -31,6 +38,8 @@ private:
     QSqlRecord *patientRow;
 
     QSqlTableModel* modelVisit;
+    int rowCurrentlySelected;
+    QSqlRecord rowCurrentlyBeingEdited;
 
     QString GetUniqueVisitId(QDate date);
     void FillTableWithDetails();
