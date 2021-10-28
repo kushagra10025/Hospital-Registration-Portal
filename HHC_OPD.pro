@@ -15,6 +15,7 @@ SOURCES += \
     dialogdbconnectionconfigure.cpp \
     dialogeditpatient.cpp \
     dialogviewvisits.cpp \
+    exportdbdata.cpp \
     main.cpp \
     mainwindow.cpp \
     printvisit.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     dialogdbconnectionconfigure.h \
     dialogeditpatient.h \
     dialogviewvisits.h \
+    exportdbdata.h \
     mainwindow.h \
     printvisit.h \
     searchpatient.h

@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "exportdbdata.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -12,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     int h = ui->lbl_logo->height();
     ui->lbl_logo->setPixmap(pix->scaled(w,h,Qt::KeepAspectRatio));
 
-//    conn = new DBConnection();
+    conn = std::make_shared<DBConnection>();
 //    qDebug() << conn->get_conn_status();
 }
 
@@ -58,5 +60,31 @@ void MainWindow::on_actionConfigure_Connection_triggered()
 //    connect(configureDBDialog, SIGNAL(signalReady(), this, SLOT(someslotfunctionhere())));
     configureDBDialog->setWindowTitle("Configure Database Connection!");
     configureDBDialog->exec();
+}
+
+
+void MainWindow::on_actionExport_DB_as_Excel_triggered()
+{
+    ExportDBData edb(conn);
+    QVector<QString> queries;
+    QVector<QString> headers;
+    QVector<QString> filenames;
+    QString path = "E:/OtherProjects/hhc_files/";
+
+    queries.push_back("select p.reg_no, p.p_fullname,p.p_gender,p.p_pno,p.p_address,p.p_age,p.p_regdate,v.visit_id ,v.date_of_visit,v.doctor_id,v.consultation_fees ,v.consultation_mode ,v.payment_method,v.payment_status,v.payment_date,v.remarks from patient_info p left join visit_details v on p.reg_no = v.reg_no");
+    queries.push_back("select * from patient_info");
+    queries.push_back("select * from visit_details");
+
+    headers.push_back("Reg No.; Full Name; Gender; Phone No. ; Address ; Age; Reg Date; Visit ID; Visit Date; Doctor ID; Consultation Fees; Consultation Mode; Payment Method; Payment Stauts; Payment Data; Remarks");
+    headers.push_back("Reg No.; Full Name; Gender; Phone No. ; Address ; Age; Reg Date");
+    headers.push_back("Visit ID; Reg No.; Visit Date; Doctor ID; Consultation Fees ; Consultation Mode; Payment Mode; Payment Status; Payment Date; Remarks");
+
+    filenames.push_back("HHC_United.csv");
+    filenames.push_back("HHC_PatientInfo.csv");
+    filenames.push_back("HHC_VisitDetails.csv");
+
+    for(int i = 0; i < queries.size(); i++){
+        edb.QueryToCSV(queries[i],headers[i],filenames[i],path);
+    }
 }
 

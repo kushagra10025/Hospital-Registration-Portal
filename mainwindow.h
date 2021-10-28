@@ -34,10 +34,14 @@ private slots:
 
     void on_actionConfigure_Connection_triggered();
 
+    void on_actionExport_DB_as_Excel_triggered();
+
 private:
     Ui::MainWindow *ui;
 
     QPixmap* pix;
+
+    std::shared_ptr<DBConnection> conn;
 
 };
 #endif // MAINWINDOW_H

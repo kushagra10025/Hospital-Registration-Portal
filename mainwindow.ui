@@ -111,6 +111,7 @@
     </property>
     <addaction name="separator"/>
     <addaction name="actionConfigure_Connection"/>
+    <addaction name="actionExport_DB_as_Excel"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
     <addaction name="actionContact"/>
@@ -143,8 +144,8 @@
    <addaction name="actionAdd_Patient"/>
    <addaction name="actionSearch_Patient"/>
    <addaction name="separator"/>
+   <addaction name="actionExport_DB_as_Excel"/>
    <addaction name="actionConfigure_Connection"/>
-   <addaction name="actionAbout"/>
    <addaction name="actionContact"/>
    <addaction name="separator"/>
    <addaction name="actionQuit"/>
@@ -216,6 +217,18 @@
    </property>
    <property name="text">
     <string>Configure Connection</string>
+   </property>
+  </action>
+  <action name="actionExport_DB_as_Excel">
+   <property name="icon">
+    <iconset resource="hhc_resources.qrc">
+     <normaloff>:/assets/assets/icons/export-csv-96.png</normaloff>:/assets/assets/icons/export-csv-96.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export DB as CSV</string>
+   </property>
+   <property name="toolTip">
+    <string>Export DB as CSV File</string>
    </property>
   </action>
  </widget>

@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <QTextDocument>
 #include <QUuid>
+//#include <QPrinter>
+//#include <QPrintDialog>
 
 PrintVisit::PrintVisit()
 {
@@ -106,5 +108,15 @@ void PrintVisit::VisitReceiptPDF(OPDVisitReceiptDetails receiptDetails)
     rsfront.append("only.");
     painter.drawText(625,1430, rsfront);
     painter.end();
+
+    // Actual Printing through Printer happens here!
+    // Currently use the Default PDF Viewer to handle printing of the PDFs
+        // QPrinter printer;
+        // printer.setPrinterName("Desired Printer Name");
+        // QPrintDialog dialog(&printer);
+        // if(dialog.exec() == QDialog::Rejected) return;
+
+    // Open in Default PDF Viewer and Use that to print
+    QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 
 }

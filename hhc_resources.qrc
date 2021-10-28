@@ -13,5 +13,7 @@
         <file>assets/icons/add-visit-48.png</file>
         <file>assets/icons/view-visit-48.png</file>
         <file>assets/template/visit_receipt_template.png</file>
+        <file>assets/icons/export-csv-48.png</file>
+        <file>assets/icons/export-csv-96.png</file>
     </qresource>
 </RCC>
