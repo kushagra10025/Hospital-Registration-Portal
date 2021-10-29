@@ -23,8 +23,6 @@ struct OPDVisitReceiptDetails : OPDReceiptDetails{
     QString patientVisitDate;
     QString visitId;
 
-    // Get Doctor Id from DoctorName
-    // TODO Replace Doctor Name with Doctor Id
     QString doctorName;
 
     QString cosulFees;

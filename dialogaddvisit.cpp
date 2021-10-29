@@ -101,8 +101,27 @@ void DialogAddVisit::add_enums_to_combo_boxes()
 
     list.clear();
     // FOR DOCTOR NAMES
-    // TODO ADD DOCTOR NAMES TO LIST
-    list << "Dr.ABC XYZ" << "Dr.PQR STU" << "Dr.EFG HIJ";
+    QSqlQuery query(conn->get_myDB());
+    query.prepare("select * from doctor_info");
+    if(!query.exec()){
+        qDebug() << "Failed to run Query";
+        return;
+    }
+
+    while(query.next()){
+        const QSqlRecord record = query.record();
+
+        QString docId = record.value("doctor_id").toString();
+        QString docName = record.value("doctor_name").toString();
+
+        doctors[docId] = docName;
+    }
+
+    for(auto itr = doctors.begin(); itr!= doctors.end(); itr++){
+        QString docNameId = itr->second + " ("+itr->first+")";
+        list << docNameId;
+    }
+
     ui->combo_doctor_name->addItems(list);
     ui->combo_doctor_name->setCurrentIndex(0);
 
@@ -130,11 +149,13 @@ void DialogAddVisit::on_btn_add_visit_clicked()
     QString paymentMode = ui->combo_payment_method->currentText();
     QString paymentStatus = ui->combo_payment_status->currentText();
 
-    // Get Doctor Id from DoctorName
-    // TODO Replace Doctor Name with Doctor Id
-    QString doctorName = ui->combo_doctor_name->currentText();
+    // Replace Doctor Name with Doctor Id
+    QString doctorNameTxt = ui->combo_doctor_name->currentText();
+    // Get Doctor Id from Doctor Name
+    QString doctorId = QString::fromStdString(get_str_between_two_str(doctorNameTxt.toStdString(),"(",")"));
+    QString doctorName = doctors.find(doctorId)->second;
 
-    if(uniqueVisitID.isEmpty() || consulFees.isEmpty() || consulMode.isEmpty() || paymentMode.isEmpty() || paymentStatus.isEmpty() || doctorName.isEmpty()){
+    if(uniqueVisitID.isEmpty() || consulFees.isEmpty() || consulMode.isEmpty() || paymentMode.isEmpty() || paymentStatus.isEmpty() || doctorNameTxt.isEmpty()){
         QMessageBox::information(this,"Empty Field!","Please enter some value!!");
         return;
     }
@@ -145,7 +166,7 @@ void DialogAddVisit::on_btn_add_visit_clicked()
 
     // TODO Perform some checks
 
-    QString queryBase = "insert into visit_details values('"+uniqueVisitID+"','"+p_reg_no+"','"+visitDateStr+"','"+doctorName+"','"+consulFees+"','"+consulMode+"','"+paymentMode+"','"+paymentStatus+"','"+paymentDateStr+"','"+remarksText+"')";
+    QString queryBase = "insert into visit_details values('"+uniqueVisitID+"','"+p_reg_no+"','"+visitDateStr+"','"+doctorId+"','"+consulFees+"','"+consulMode+"','"+paymentMode+"','"+paymentStatus+"','"+paymentDateStr+"','"+remarksText+"')";
     QSqlQuery* qry = new QSqlQuery(conn->get_myDB());
     qry->prepare(queryBase);
     // DO ERROR CHECKING FOR SQL RULES BEFORE EMITTING SIGNAL
@@ -156,7 +177,7 @@ void DialogAddVisit::on_btn_add_visit_clicked()
         return;
     }
 
-    // TODO Go To Print Receipt
+    // Go To Print Receipt
     QMessageBox::StandardButton printQues = QMessageBox::question(this,"Print Visit!","Do You want to Print the Visit Details?", QMessageBox::Yes | QMessageBox::No);
     if(printQues == QMessageBox::Yes){
         qDebug() << "Yes Clicked!";
@@ -180,6 +201,16 @@ void DialogAddVisit::on_btn_add_visit_clicked()
 
         emit printVisitReady(visitReceiptDetails);
     }
-    // Auto Clear form After Added the visit!
+    // TODO Auto Clear form After Added the visit!
+}
+
+std::string DialogAddVisit::get_str_between_two_str(const std::string &s, const std::string &start_delim, const std::string &stop_delim)
+{
+    unsigned first_delim_pos = s.find(start_delim);
+    unsigned end_pos_of_first_delim = first_delim_pos + start_delim.length();
+    unsigned last_delim_pos = s.find(stop_delim);
+
+    return s.substr(end_pos_of_first_delim,
+            last_delim_pos - end_pos_of_first_delim);
 }
 

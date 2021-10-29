@@ -181,8 +181,8 @@ void SearchPatient::slotViewVisits()
 {
     DialogViewVisits *viewVisitsDialog = new DialogViewVisits(&rowCurrentlyBeingEdited, conn);
 
-//    connect(viewVisitsDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateEditTableModel()));
-
+    // Receive the print_confirmation and Record then print the receipt.
+    connect(viewVisitsDialog, &DialogViewVisits::printVisitReady,this, &SearchPatient::slotPrintVisit);
     viewVisitsDialog->setWindowTitle("View Patient Visits/Payment History!");
     viewVisitsDialog->exec();
 }
@@ -192,10 +192,8 @@ void SearchPatient::slotAddVisit()
     qDebug() << "Adding A Visit!";
     DialogAddVisit *addVisitDialog = new DialogAddVisit(&rowCurrentlyBeingEdited, conn);
 
-//    connect(addVisitDialog, SIGNAL(printVisitReady(receitVisit)), this, SLOT(slotPrintVisit(receitVisit)));
+    // Receive the print_confirmation and Record then print the receipt.
     connect(addVisitDialog, &DialogAddVisit::printVisitReady,this, &SearchPatient::slotPrintVisit);
-    // TODO Receive the print_confirmation and Record
-    // from AddVisit and View Vist and then print the receipt.
 
     addVisitDialog->setWindowTitle("Add Patient Visit/Payment!");
     addVisitDialog->exec();

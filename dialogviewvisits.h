@@ -7,6 +7,7 @@
 #include <QMenu>
 
 #include "dbconnection.h"
+#include "printvisit.h"
 
 namespace Ui {
 class DialogViewVisits;
@@ -19,6 +20,9 @@ class DialogViewVisits : public QDialog
 public:
     explicit DialogViewVisits(QSqlRecord *patientRow, std::shared_ptr<DBConnection> conn, QWidget *parent = nullptr);
     ~DialogViewVisits();
+
+signals:
+    void printVisitReady(OPDVisitReceiptDetails receitVisit);
 
 private slots:
     void slotUpdateTableModel();
@@ -41,6 +45,9 @@ private:
     int rowCurrentlySelected;
     QSqlRecord rowCurrentlyBeingEdited;
 
+    OPDVisitReceiptDetails visitReceiptDetails;
+
+    QString GetDoctorNameFromId(QString ID);
     QString GetUniqueVisitId(QDate date);
     void FillTableWithDetails();
 

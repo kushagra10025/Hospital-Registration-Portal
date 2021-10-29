@@ -39,6 +39,9 @@ private:
 
     QString p_reg_no;
     QSqlRecord *patientRow;
+    std::map<QString, QString> doctors;
+
+    std::string get_str_between_two_str(const std::string &s,const std::string &start_delim,const std::string &stop_delim);
 
     QString GetUniqueVisitId(QDate date);
 

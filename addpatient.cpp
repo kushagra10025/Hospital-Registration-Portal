@@ -77,7 +77,7 @@ void AddPatient::on_btn_register_clicked()
     QString queryBase = "insert into patient_info(reg_no,p_fullname,p_gender,p_pno,p_address,p_age,p_regdate) values ('"+reg_no+"','"+fullname+"','"+gender+"','"+phone+"','"+address+"','"+age+"','"+regDate.toString()+"')";
     QSqlQuery* qry = new QSqlQuery(conn->get_myDB());
     qry->prepare(queryBase);
-    // DO ERROR CHECKING FOR SQL RULES BEFORE EMITTING SIGNAL
+    // TODO DOERROR CHECKING FOR SQL RULES BEFORE EMITTING SIGNAL
     if(qry->exec()){
         QMessageBox::information(this,"Success!","Inserted Successfully!");
     }else{
