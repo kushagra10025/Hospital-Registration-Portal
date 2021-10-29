@@ -2,11 +2,11 @@
 
 ![HHC Logo](https://i.ibb.co/ZfyDKDj/HHC-Logo.png)
 
-Hospital Registration Portal is, a FOSS under Apache 2 License, developed specifically for Hathidah Health Care.
+Hospital Registration Portal is, a FOSS under Apache 2 License, developed specifically for Hathidah Health Care, which is an integrated unit of health care having objective of taking care of Physical, Mental and Social Health of Society through Allopathy, Homeopathy, Ayurveda, Yoga facilities both online and offline.
 
-> Hathidah Health Care is the brainchild of Sri Prakash (my father) and intends to provide top notch health care facilities to people in my village.
+> Hathidah Health Care is the brainchild of Sri Prakash (my father) and Dr. Satya Prakash (my uncle) - A Renowned Cardiologist in Indian State of Bihar, which took birth during the unprecedented global crisis of COVID-19, experiencing the hardship in Health Sector on ground.
 >
-> It has been started as a source of engagement for him post retirement and also as a way to carry on will of his late father, a Freedom Figher, Social Worker and an ex-MLA, to serve the society in any way possible.
+> It has been started as a source of engagement for him post retirement and also as a way to carry on will of his late father, a Freedom Figher, Social Worker and an ex-MLA, to serve the society and motherland in any way possible.
 
 Taking into consideration the nature of the entity to serve the people, this project has been made open-source with the hope that it may be useful for people in one way or the other.
 
