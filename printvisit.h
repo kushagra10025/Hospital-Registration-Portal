@@ -10,6 +10,8 @@
 #include <QSqlRecord>
 #include <array>
 
+#include "configsettings.h"
+
 struct OPDReceiptDetails{
     QString patientRegNo;
     QString patientName;
@@ -52,6 +54,8 @@ public:
 private:
     std::array<QString,20> one;
     std::array<QString,10> ten;
+
+    std::shared_ptr<ConfigSettings> confsett;
 };
 
 #endif // PRINTVISIT_H

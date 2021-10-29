@@ -39,6 +39,7 @@ QString DialogAddVisit::GetUniqueVisitId(QDate date)
     dateStr.append(QString::number(date.month()));
     dateStr.append(QString::number(date.day()));
 
+    // TODO Remove HardCoded Identifier to Init File for Easy Configureability
     QString hcIdentifier = "/HHC_V/";
     result.append(dateStr);
     result.append(hcIdentifier);

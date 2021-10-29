@@ -16,4 +16,8 @@
         <file>assets/icons/export-csv-48.png</file>
         <file>assets/icons/export-csv-96.png</file>
     </qresource>
+    <qresource prefix="/app_icon">
+        <file>assets/app_icon/icon_128.ico</file>
+        <file>assets/app_icon/icon_256.ico</file>
+    </qresource>
 </RCC>

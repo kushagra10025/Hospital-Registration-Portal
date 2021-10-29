@@ -29,6 +29,7 @@ QString AddPatient::GetUniqueRegistration(QDate date)
     dateStr.append(QString::number(date.month()));
     dateStr.append(QString::number(date.day()));
 
+    // TODO Remove HardCoded Identifier to Init File for Easy Configureability
     QString hcIdentifier = "/HHC/";
     result.append(dateStr);
     result.append(hcIdentifier);

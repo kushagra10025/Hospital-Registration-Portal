@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     addpatient.cpp \
+    configsettings.cpp \
     dbconnection.cpp \
     dialogaddvisit.cpp \
     dialogdbconnectionconfigure.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     PROG_ENUMS.h \
     addpatient.h \
+    configsettings.h \
     dbconnection.h \
     dialogaddvisit.h \
     dialogdbconnectionconfigure.h \
@@ -50,3 +52,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     hhc_resources.qrc
+
+RC_ICONS = ./assets/app_icon/icon_256.ico

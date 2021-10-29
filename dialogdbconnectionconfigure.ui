@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Configure DB Connection</string>
+        <string>Configure DB Connection : Under Construction</string>
        </property>
       </widget>
      </item>

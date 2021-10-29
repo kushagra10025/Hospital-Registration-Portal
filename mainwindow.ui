@@ -145,7 +145,6 @@
    <addaction name="actionSearch_Patient"/>
    <addaction name="separator"/>
    <addaction name="actionExport_DB_as_Excel"/>
-   <addaction name="actionConfigure_Connection"/>
    <addaction name="actionContact"/>
    <addaction name="separator"/>
    <addaction name="actionQuit"/>

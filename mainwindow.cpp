@@ -68,7 +68,13 @@ void MainWindow::on_actionExport_DB_as_Excel_triggered()
     QVector<QString> queries;
     QVector<QString> headers;
     QVector<QString> filenames;
-    QString path = "E:/OtherProjects/hhc_files/";
+
+    confsett = std::make_shared<ConfigSettings>();
+    confsett->AppSettings()->sync();
+
+    confsett->AppSettings()->beginGroup("paths");
+    QString DB_CSV_ExportPath = confsett->AppSettings()->value("csv_export").toString();
+    confsett->AppSettings()->endGroup();
 
     queries.push_back("select p.reg_no, p.p_fullname,p.p_gender,p.p_pno,p.p_address,p.p_age,p.p_regdate,v.visit_id ,v.date_of_visit,d.doctor_name,v.consultation_fees ,v.consultation_mode ,v.payment_method,v.payment_status,v.payment_date,v.remarks from patient_info p left join visit_details v on p.reg_no = v.reg_no left join doctor_info d on v.doctor_id = d.doctor_id");
     queries.push_back("select * from patient_info");
@@ -86,7 +92,7 @@ void MainWindow::on_actionExport_DB_as_Excel_triggered()
     filenames.push_back("HHC_DoctorInfo.csv");
 
     for(int i = 0; i < queries.size(); i++){
-        edb.QueryToCSV(queries[i],headers[i],filenames[i],path);
+        edb.QueryToCSV(queries[i],headers[i],filenames[i],DB_CSV_ExportPath);
     }
 }
 

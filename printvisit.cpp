@@ -62,7 +62,13 @@ void PrintVisit::VisitReceiptPDF(OPDVisitReceiptDetails receiptDetails)
     // TODO Add a variable path to save the PDFs
     // If temp path then delete the file after printing
 
-    QString filePath = "E:/OtherProjects/hhc_files/";
+    confsett = std::make_shared<ConfigSettings>();
+    confsett->AppSettings()->sync();
+
+    confsett->AppSettings()->beginGroup("paths");
+    QString filePath = confsett->AppSettings()->value("pdf_export").toString();
+    confsett->AppSettings()->endGroup();
+
     QString fileName = "";
     QUuid uuid = QUuid::createUuid();
     fileName.append(uuid.toString());

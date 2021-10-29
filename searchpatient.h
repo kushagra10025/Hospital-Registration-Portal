@@ -57,7 +57,6 @@ private:
 
     std::shared_ptr<DBConnection> conn;
     std::shared_ptr<PrintVisit> printv;
-//    DBConnection *conn;
 
     QSqlTableModel* modelDevice;
     int rowCurrentlySelected;

@@ -8,6 +8,7 @@
 
 #include "dialogdbconnectionconfigure.h"
 #include "dbconnection.h"
+#include "configsettings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,6 +43,6 @@ private:
     QPixmap* pix;
 
     std::shared_ptr<DBConnection> conn;
-
+    std::shared_ptr<ConfigSettings> confsett;
 };
 #endif // MAINWINDOW_H

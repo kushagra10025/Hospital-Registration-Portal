@@ -3,6 +3,8 @@
 
 #include <QtSql>
 #include <QtDebug>
+
+#include "configsettings.h"
 class DBConnection
 {
 public:
@@ -16,6 +18,7 @@ public:
 private:
     bool conn_status;
     QSqlDatabase myDB;
+    std::shared_ptr<ConfigSettings> confsett;
 };
 
 #endif // DBCONNECTION_H
