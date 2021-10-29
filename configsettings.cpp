@@ -33,6 +33,7 @@ void ConfigSettings::SetDeafultValues()
 
     settings->beginGroup("paths");
     settings->setValue("csv_export","E:/OtherProjects/hhc_files/");
+    settings->setValue("pdf_export","E:/OtherProjects/hhc_files/pdfs/");
     settings->endGroup();
 }
 
